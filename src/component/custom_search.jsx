@@ -11,7 +11,9 @@ const Search = ({
   type,
   className,
   value,
-  name
+  name,
+  list,
+  id
 }) => {
   return (
     <input
@@ -21,9 +23,11 @@ const Search = ({
         textTransform: textTransform ? textTransform : "uppercase"
       }}
       type={type ? type : "text"}
-      value={value}
+      value={value ? value : ""}
       name={name ? name : null}
       padding={padding ? padding : null}
+      id={id ? id : null}
+      list={list ? list : null}
       onChange={onChange}
       className={className ? className : null}
       margin={margin ? margin : null}

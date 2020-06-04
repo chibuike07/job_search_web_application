@@ -1,6 +1,6 @@
 import React from "react";
 import yelp from "./Yelp";
-import CustomInput from "./costom_search";
+import CustomInput from "./custom_search";
 const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
   const { job_search, location, sort_by } = value;
   return (
@@ -17,6 +17,7 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
           name={"location"}
           onChange={handleChange}
           value={location}
+          list={"location"}
         />
         <CustomInput
           onChange={handleChange}
