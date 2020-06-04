@@ -1,8 +1,9 @@
 import React from "react";
 import yelp from "./Yelp";
 import CustomInput from "./custom_search";
+import { LocationOption } from "./location_options";
 const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
-  const { job_search, location, sort_by } = value;
+  const { job_search, location, sort_by, LocationOptions } = value;
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -27,17 +28,22 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
           textTransform={"lowerCase"}
         />
         <button>click</button>
+        <datalist id={"location"}>
+          {LocationOption &&
+            LocationOptions.map((value, i) => <option key={i} value={value} />)}
+        </datalist>
       </form>
     </div>
   );
+  // https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations
 };
 
 class Parent extends React.Component {
   state = {
     job_search: "",
     location: "",
-    sort_by: ""
-    // apiCall: yelp
+    sort_by: "",
+    LocationOptions: []
   };
 
   handleChange = ({ target }) => {
@@ -59,8 +65,16 @@ class Parent extends React.Component {
       //   return false;
     }
   };
-
+  handleLocationOptions = () => {
+    console.log(LocationOption);
+    let states = LocationOption && Object.keys(LocationOption);
+    this.setState({ LocationOptions: states });
+  };
+  componentDidMount() {
+    this.handleLocationOptions();
+  }
   render() {
+    console.log(this.state.LocationOptions);
     return (
       <div>
         <BusinessSearch
