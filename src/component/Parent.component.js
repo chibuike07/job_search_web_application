@@ -25,7 +25,6 @@ class Parent extends React.Component {
       alert("yes");
       // let res = await yelp.searchYelp("Starbucks", "MX", "best_match");
       let res = await yelp.searchYelp(job_search, location, sort_by);
-
       this.setState({ businessSearch: res });
       console.log(res);
     } else {
