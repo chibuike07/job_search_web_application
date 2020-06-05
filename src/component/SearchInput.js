@@ -1,9 +1,16 @@
 import React from "react";
-import yelp from "./Yelp";
 import CustomInput from "./custom_search";
-import { LocationOption } from "./location_options";
 const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
-  const { job_search, location, sort_by, LocationOptions } = value;
+  const {
+    job_search,
+    location,
+    sort_by,
+    LocationOptions,
+    sortByOption,
+    businessSearch
+  } = value;
+  console.log(businessSearch);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -26,11 +33,17 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
           name={"sort_by"}
           value={sort_by}
           textTransform={"lowerCase"}
+          list={"sortBy"}
         />
         <button>click</button>
         <datalist id={"location"}>
+          <option value={LocationOption[0]} defaultChecked />
           {LocationOption &&
             LocationOptions.map((value, i) => <option key={i} value={value} />)}
+        </datalist>
+        <datalist id={"sortBy"}>
+          {sortByOption &&
+            sortBy.map((values, i) => <option value={values} key={i} />)}
         </datalist>
       </form>
     </div>
@@ -38,52 +51,4 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
   // https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations
 };
 
-class Parent extends React.Component {
-  state = {
-    job_search: "",
-    location: "",
-    sort_by: "",
-    LocationOptions: []
-  };
-
-  handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
-  };
-
-  handleSubmit = async e => {
-    const { location, sort_by, job_search } = this.state;
-    e.preventDefault();
-    // console.log(stateProps);
-    if (location !== "" && sort_by !== "" && job_search !== "") {
-      alert("yes");
-      // let res = await yelp.searchYelp("Starbucks", "MX", "best_match");
-      let res = await yelp.searchYelp(job_search, location, sort_by);
-      console.log(res);
-      //   return false;
-    } else {
-      alert("no");
-      //   return false;
-    }
-  };
-  handleLocationOptions = () => {
-    console.log(LocationOption);
-    let states = LocationOption && Object.keys(LocationOption);
-    this.setState({ LocationOptions: states });
-  };
-  componentDidMount() {
-    this.handleLocationOptions();
-  }
-  render() {
-    console.log(this.state.LocationOptions);
-    return (
-      <div>
-        <BusinessSearch
-          value={this.state}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
-      </div>
-    );
-  }
-}
-export default Parent;
+export default BusinessSearch;

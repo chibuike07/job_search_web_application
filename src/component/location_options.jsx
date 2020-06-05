@@ -46,3 +46,5 @@ export const LocationOption = {
   WisConsin: "WT",
   Wyoming: "WY"
 };
+
+export const sortBy = ["best_match", "rating", "review_count"];

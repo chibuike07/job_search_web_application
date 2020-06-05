@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 // import App from './App';
-import Parent from "./component/SearchInput";
+import Parent from "./component/Parent.component";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<Parent />, document.getElementById("root"));
