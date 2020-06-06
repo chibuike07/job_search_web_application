@@ -102,9 +102,11 @@ class Parent extends React.Component {
     if (location !== "" && sort_by !== "" && job_search !== "") {
       alert("yes");
       // let res = await yelp.searchYelp("Starbucks", "MX", "best_match");
-      let res = await yelp.searchYelp(job_search, location, sort_by);
+      let result = Object.values(LocationOption[location]).join("");
+      let res = await yelp.searchYelp(job_search, result, sort_by);
       this.setState({ businessSearch: res });
       console.log(res);
+      console.log(result);
     } else {
       alert("no");
     }

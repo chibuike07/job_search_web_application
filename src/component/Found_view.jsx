@@ -1,11 +1,13 @@
 import React from "react";
-
+import Styles from "./Found_view.module.css";
 const FoundView = ({ foundSearch }) => {
   // console.log(foundSearch);
+  const { view_wrapper, display_view, found_view, img_view } = Styles;
   const searchResult = foundSearch.length ? (
+    foundSearch &&
     foundSearch.map(({ address, imageSrc, url, city, category }, i) => (
-      <div key={i}>
-        <div>
+      <div key={i} className={found_view}>
+        <div className={img_view}>
           <img
             src={imageSrc}
             alt={category}
@@ -13,18 +15,18 @@ const FoundView = ({ foundSearch }) => {
           />
         </div>
         <address>{address}</address>
-        <br />
         <cite>{city}</cite>
+        <br />
         <a href={url}>view in page</a>
       </div>
     ))
   ) : (
-    <div>loading...</div>
+    <div>{null}</div>
   );
 
   return (
-    <div style={{ display: "flex", justifyContent: "spac-around" }}>
-      <div>{searchResult}</div>
+    <div className={view_wrapper}>
+      <div className={display_view}>{searchResult}</div>
     </div>
   );
 };

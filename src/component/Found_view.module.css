@@ -1,0 +1,15 @@
+.view_wrapper {
+  width: 100%;
+}
+.display_view {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.found_view {
+  padding: 10px 0, 10px, 0;
+}
+.img_view {
+  padding: 10px;
+}

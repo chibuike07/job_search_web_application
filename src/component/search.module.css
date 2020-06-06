@@ -22,6 +22,7 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  font-size: 0.7em;
 }
 .inputLabel label {
   margin-bottom: 10px;
@@ -45,7 +46,22 @@
   width: inherit;
   height: 6vh;
   border-radius: 20px;
-  background-color: rgb(48, 148, 229);
+  background-color: inherit;
   color: #fff;
   text-transform: capitalize;
+  outline: none;
+  border-color: gold;
+  border: none;
+}
+.btn button:hover {
+  animation: splash 4s infinite;
+}
+
+@keyframes splash {
+  from {
+    background-color: inherit;
+  }
+  to {
+    background-color: rgb(91, 172, 197);
+  }
 }
