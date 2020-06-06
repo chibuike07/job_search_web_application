@@ -2,6 +2,7 @@ import React from "react";
 import yelp from "./Yelp";
 import CustomInput from "./custom_search";
 import Styles from "./search.module.css";
+import FoundView from "./Found_view";
 // import BusinessSearch from "./Parent.component";
 import { LocationOption, sortBy } from "./location_options";
 
@@ -12,66 +13,68 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
     location,
     sort_by,
     LocationOptions,
-    sortByOption,
-    businessSearch
+    sortByOption
   } = value;
-  console.log(businessSearch);
 
   return (
     <div>
-      <div className={input_wrapper}>
-        <form onSubmit={handleSubmit} className={form}>
-          <div className={inputLabel}>
-            <label htmlFor="job_search">what are you looking for</label>
-            <CustomInput
-              placeholder={"job search"}
-              name={"job_search"}
-              onChange={handleChange}
-              value={job_search}
-              id={"job_search"}
-              width={"25vw"}
-            />
-          </div>
-          <div className={inputLabel}>
-            <label htmlFor="locations">what location are you looking at</label>
-            <CustomInput
-              placeholder={"location"}
-              name={"location"}
-              onChange={handleChange}
-              value={location}
-              list={"location"}
-              id={"locations"}
-              width={"25vw"}
-            />
-          </div>
-          <div className={inputLabel}>
-            <label htmlFor="sort">search terms</label>
-            <CustomInput
-              onChange={handleChange}
-              defaultValue={"best_match"}
-              name={"sort_by"}
-              value={sort_by}
-              textTransform={"lowerCase"}
-              list={"sortBy"}
-              id={"sort"}
-              width={"25vw"}
-            />
-          </div>
-          <datalist id={"location"}>
-            <option value={LocationOption[0]} defaultChecked />
-            {LocationOption &&
-              LocationOptions.map((value, i) => (
-                <option key={i} value={value} />
-              ))}
-          </datalist>
-          <datalist id={"sortBy"}>
-            {sortByOption &&
-              sortBy.map((values, i) => <option value={values} key={i} />)}
-          </datalist>
-          <div className={btn}>
-            <button>search</button>
-          </div>
-        </form>
+      <div>
+        <div className={input_wrapper}>
+          <form onSubmit={handleSubmit} className={form}>
+            <div className={inputLabel}>
+              <label htmlFor="job_search">what are you looking for</label>
+              <CustomInput
+                placeholder={"job search"}
+                name={"job_search"}
+                onChange={handleChange}
+                value={job_search}
+                id={"job_search"}
+                width={"25vw"}
+              />
+            </div>
+            <div className={inputLabel}>
+              <label htmlFor="locations">
+                what location are you looking at
+              </label>
+              <CustomInput
+                placeholder={"location"}
+                name={"location"}
+                onChange={handleChange}
+                value={location}
+                list={"location"}
+                id={"locations"}
+                width={"25vw"}
+              />
+            </div>
+            <div className={inputLabel}>
+              <label htmlFor="sort">search terms</label>
+              <CustomInput
+                onChange={handleChange}
+                defaultValue={"best_match"}
+                name={"sort_by"}
+                value={sort_by}
+                textTransform={"lowerCase"}
+                list={"sortBy"}
+                id={"sort"}
+                width={"25vw"}
+              />
+            </div>
+            <datalist id={"location"}>
+              <option value={LocationOption[0]} />
+              {LocationOption &&
+                LocationOptions.map((value, i) => (
+                  <option key={i} value={value} />
+                ))}
+            </datalist>
+            <datalist id={"sortBy"}>
+              {sortByOption &&
+                sortBy.map((values, i) => <option value={values} key={i} />)}
+            </datalist>
+            <div className={btn}>
+              <button>search</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
@@ -117,16 +120,15 @@ class Parent extends React.Component {
     this.handleLocationOptions();
   }
   render() {
+    // console.log(this.state.businessSearch);
     return (
       <div>
-        {/* <div>
-          <h2>princewill concept</h2>
-        </div> */}
         <BusinessSearch
           value={this.state}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
+        <FoundView foundSearch={this.state.businessSearch} />
       </div>
     );
   }
