@@ -31,7 +31,6 @@ const yelp = {
             };
           });
         }
-        console.log(jsonResponse);
       });
   }
 };
