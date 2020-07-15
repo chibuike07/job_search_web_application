@@ -1,7 +1,6 @@
 import React from "react";
 import Styles from "./Found_view.module.css";
 const FoundView = ({ foundSearch }) => {
-  // console.log(foundSearch);
   const { view_wrapper, display_view, found_view, img_view } = Styles;
   const searchResult = foundSearch.length ? (
     foundSearch &&

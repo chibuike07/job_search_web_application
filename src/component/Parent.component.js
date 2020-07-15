@@ -3,7 +3,6 @@ import yelp from "./Yelp";
 import CustomInput from "./custom_search";
 import Styles from "./search.module.css";
 import FoundView from "./Found_view";
-// import BusinessSearch from "./Parent.component";
 import { LocationOption, sortBy } from "./location_options";
 
 const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
@@ -98,17 +97,12 @@ class Parent extends React.Component {
   handleSubmit = async e => {
     const { location, sort_by, job_search } = this.state;
     e.preventDefault();
-    // console.log(stateProps);
     if (location !== "" && sort_by !== "" && job_search !== "") {
-      alert("yes");
-      // let res = await yelp.searchYelp("Starbucks", "MX", "best_match");
       let result = Object.values(LocationOption[location]).join("");
       let res = await yelp.searchYelp(job_search, result, sort_by);
       this.setState({ businessSearch: res });
-      console.log(res);
-      console.log(result);
     } else {
-      alert("no");
+      alert("sorry search not found");
     }
   };
 
@@ -122,7 +116,6 @@ class Parent extends React.Component {
     this.handleLocationOptions();
   }
   render() {
-    // console.log(this.state.businessSearch);
     return (
       <div>
         <BusinessSearch
