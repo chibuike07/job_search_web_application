@@ -13,13 +13,14 @@ const Search = ({
   value,
   name,
   list,
+  required,
   id
 }) => {
   return (
     <input
       style={{
-        width: width ? width : "200px",
-        height: height ? height : "5vh",
+        width: width ? width : null,
+        height: height ? height : null,
         textTransform: textTransform ? textTransform : "uppercase"
       }}
       type={type ? type : "text"}
@@ -32,6 +33,7 @@ const Search = ({
       className={className ? className : null}
       margin={margin ? margin : null}
       placeholder={placeholder ? placeholder : null}
+      required={required ? required : null}
     />
   );
 };

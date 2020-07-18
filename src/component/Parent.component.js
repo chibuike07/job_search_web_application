@@ -6,7 +6,7 @@ import FoundView from "./Found_view";
 import { LocationOption, sortBy } from "./location_options";
 
 const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
-  const { input_wrapper, form, inputLabel, btn } = Styles;
+  const { input_wrapper, form, inputLabel, input, btn } = Styles;
   const {
     job_search,
     location,
@@ -28,7 +28,8 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
                 onChange={handleChange}
                 value={job_search}
                 id={"job_search"}
-                width={"25vw"}
+                className={input}
+                required={true}
               />
             </div>
             <div className={inputLabel}>
@@ -42,7 +43,8 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
                 value={location}
                 list={"location"}
                 id={"locations"}
-                width={"25vw"}
+                className={input}
+                required={true}
               />
             </div>
             <div className={inputLabel}>
@@ -55,7 +57,8 @@ const BusinessSearch = ({ handleChange, value, handleSubmit }) => {
                 textTransform={"lowerCase"}
                 list={"sortBy"}
                 id={"sort"}
-                width={"25vw"}
+                className={input}
+                required={true}
               />
             </div>
             <datalist id={"location"}>
@@ -102,7 +105,7 @@ class Parent extends React.Component {
       let res = await yelp.searchYelp(job_search, result, sort_by);
       this.setState({ businessSearch: res });
     } else {
-      alert("sorry search not found");
+      alert("field values are required");
     }
   };
 
