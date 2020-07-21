@@ -119,6 +119,8 @@ class Parent extends React.Component {
     this.handleLocationOptions();
   }
   render() {
+    const { foundView } = Styles;
+
     return (
       <div>
         <BusinessSearch
@@ -126,7 +128,9 @@ class Parent extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <FoundView foundSearch={this.state.businessSearch} />
+        <div className={foundView}>
+          <FoundView foundSearch={this.state.businessSearch} />
+        </div>
       </div>
     );
   }
